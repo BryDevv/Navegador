@@ -18,6 +18,7 @@ namespace Navegador
         {
             InitializeComponent();
             InicializarWebView();
+            
         }
 
         private async void InicializarWebView()
@@ -45,6 +46,7 @@ namespace Navegador
             else
             {
                 Url = "https://www.google.com/search?q=" + Url;
+                webView21.Source = new Uri(Url);
             }
 
             

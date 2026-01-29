@@ -35,8 +35,10 @@
             this.anteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.siguienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -46,17 +48,17 @@
             "https://www.umes.edu.gt",
             "https://www.youtube.com",
             "https://www.google.com"});
-            this.comboBox1.Location = new System.Drawing.Point(114, 49);
+            this.comboBox1.Location = new System.Drawing.Point(0, 0);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(556, 24);
+            this.comboBox1.Size = new System.Drawing.Size(755, 24);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Ir
             // 
-            this.Ir.Location = new System.Drawing.Point(696, 46);
+            this.Ir.Location = new System.Drawing.Point(752, 0);
             this.Ir.Name = "Ir";
-            this.Ir.Size = new System.Drawing.Size(52, 45);
+            this.Ir.Size = new System.Drawing.Size(52, 27);
             this.Ir.TabIndex = 1;
             this.Ir.Text = "Ir";
             this.Ir.UseVisualStyleBackColor = true;
@@ -71,7 +73,7 @@
             this.siguienteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(948, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(948, 30);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "Menu";
             // 
@@ -101,11 +103,23 @@
             this.webView21.AllowExternalDrop = true;
             this.webView21.CreationProperties = null;
             this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView21.Location = new System.Drawing.Point(57, 157);
+            this.webView21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webView21.Location = new System.Drawing.Point(0, 59);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(838, 431);
+            this.webView21.Size = new System.Drawing.Size(948, 559);
             this.webView21.TabIndex = 3;
             this.webView21.ZoomFactor = 1D;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.Ir);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(948, 29);
+            this.panel1.TabIndex = 4;
             // 
             // Form1
             // 
@@ -113,8 +127,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(948, 618);
             this.Controls.Add(this.webView21);
-            this.Controls.Add(this.Ir);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -122,6 +135,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +150,7 @@
         private System.Windows.Forms.ToolStripMenuItem anteriorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siguienteToolStripMenuItem;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
