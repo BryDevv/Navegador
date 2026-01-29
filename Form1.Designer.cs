@@ -56,7 +56,7 @@
             // 
             this.Ir.Location = new System.Drawing.Point(696, 46);
             this.Ir.Name = "Ir";
-            this.Ir.Size = new System.Drawing.Size(52, 29);
+            this.Ir.Size = new System.Drawing.Size(52, 45);
             this.Ir.TabIndex = 1;
             this.Ir.Text = "Ir";
             this.Ir.UseVisualStyleBackColor = true;
