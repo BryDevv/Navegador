@@ -1,6 +1,6 @@
 ﻿namespace Navegador
 {
-    partial class Form1
+    partial class Navegador
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Navegador));
+            this.AdressBar = new System.Windows.Forms.ComboBox();
             this.Ir = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.navegarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,24 +42,26 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // AdressBar
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.AdressBar.FormattingEnabled = true;
+            this.AdressBar.Items.AddRange(new object[] {
             "https://www.umes.edu.gt",
             "https://www.youtube.com",
             "https://www.google.com"});
-            this.comboBox1.Location = new System.Drawing.Point(0, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(755, 24);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.AdressBar.Location = new System.Drawing.Point(0, 0);
+            this.AdressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.AdressBar.Name = "AdressBar";
+            this.AdressBar.Size = new System.Drawing.Size(755, 25);
+            this.AdressBar.TabIndex = 0;
+            this.AdressBar.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Ir
             // 
             this.Ir.Location = new System.Drawing.Point(752, 0);
+            this.Ir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Ir.Name = "Ir";
-            this.Ir.Size = new System.Drawing.Size(52, 27);
+            this.Ir.Size = new System.Drawing.Size(52, 29);
             this.Ir.TabIndex = 1;
             this.Ir.Text = "Ir";
             this.Ir.UseVisualStyleBackColor = true;
@@ -80,21 +83,21 @@
             // navegarToolStripMenuItem
             // 
             this.navegarToolStripMenuItem.Name = "navegarToolStripMenuItem";
-            this.navegarToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.navegarToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
             this.navegarToolStripMenuItem.Text = "Home";
             this.navegarToolStripMenuItem.Click += new System.EventHandler(this.navegarToolStripMenuItem_Click);
             // 
             // anteriorToolStripMenuItem
             // 
             this.anteriorToolStripMenuItem.Name = "anteriorToolStripMenuItem";
-            this.anteriorToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
+            this.anteriorToolStripMenuItem.Size = new System.Drawing.Size(77, 26);
             this.anteriorToolStripMenuItem.Text = "Anterior";
             this.anteriorToolStripMenuItem.Click += new System.EventHandler(this.anteriorToolStripMenuItem_Click);
             // 
             // siguienteToolStripMenuItem
             // 
             this.siguienteToolStripMenuItem.Name = "siguienteToolStripMenuItem";
-            this.siguienteToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
+            this.siguienteToolStripMenuItem.Size = new System.Drawing.Size(85, 26);
             this.siguienteToolStripMenuItem.Text = "Siguiente";
             this.siguienteToolStripMenuItem.Click += new System.EventHandler(this.siguienteToolStripMenuItem_Click);
             // 
@@ -104,34 +107,39 @@
             this.webView21.CreationProperties = null;
             this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
             this.webView21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView21.Location = new System.Drawing.Point(0, 59);
+            this.webView21.Location = new System.Drawing.Point(0, 60);
+            this.webView21.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(948, 559);
+            this.webView21.Size = new System.Drawing.Size(948, 597);
             this.webView21.TabIndex = 3;
             this.webView21.ZoomFactor = 1D;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.AdressBar);
             this.panel1.Controls.Add(this.Ir);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(948, 29);
+            this.panel1.Size = new System.Drawing.Size(948, 30);
             this.panel1.TabIndex = 4;
             // 
-            // Form1
+            // Navegador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 618);
+            this.ClientSize = new System.Drawing.Size(948, 657);
             this.Controls.Add(this.webView21);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Microsoft JhengHei UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "Navegador";
+            this.Text = "Chronos";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
@@ -143,7 +151,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox AdressBar;
         private System.Windows.Forms.Button Ir;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem navegarToolStripMenuItem;
