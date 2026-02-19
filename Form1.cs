@@ -16,24 +16,13 @@ namespace Navegador
 {
     public partial class Navegador : Form
     {
+        List<Historial> historial = new List<Historial>();
         public Navegador()
         {
             InitializeComponent();
             InicializarWebView();
-            
-            FileStream stream = new FileStream("Historial.txt", FileMode.Open, FileAccess.Read);
-            StreamReader reader = new StreamReader(stream);
+            CargarHistorial();
 
-
-            while (reader.Peek() > -1)
-            //Esta linea envía el texto leído a un control richTextBox, se puede cambiar para que
-            //lo muestre en otro control por ejemplo un combobox
-            {
-                AdressBar.Items.Add(reader.ReadLine());
-
-            }
-            //Cerrar el archivo, esta linea es importante porque sino despues de correr varias veces el programa daría error de que el archivo quedó abierto muchas veces. Entonces es necesario cerrarlo despues de terminar de leerlo.
-            reader.Close();
 
         }
 
@@ -43,41 +32,104 @@ namespace Navegador
         }
 
 
-        private void Guardar(string fileName, string texto)
+        private void GuardarHistorial()
         {
-            //Abrir el archivo: Write sobreescribe el archivo, Append agrega los datos al final del archivo
-            FileStream stream = new FileStream(fileName, FileMode.Append, FileAccess.Write);
-            //Crear un objeto para escribir el archivo
-            StreamWriter writer = new StreamWriter(stream);
-            //Usar el objeto para escribir al archivo, WriteLine, escribe linea por linea
-            //Write escribe todo en la misma linea. En este ejemplo se hará un dato por cada línea
-            writer.WriteLine(texto);
-            //Cerrar el archivo
+            // Usar using y formato de fecha "round-trip" para parseo robusto
+            using (var writer = new StreamWriter("Historial.txt", false))
+            {
+            foreach (Historial h in historial)
+            {
+                writer.WriteLine($"{h.Url}|{h.Contador}|{h.Date}");
+            }
+
             writer.Close();
+            }
+
         }
 
 
+        private void CargarHistorial()
+        {
+            if (File.Exists("Historial.txt"))
+            {
+                using (var reader = new StreamReader("Historial.txt"))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string linea = reader.ReadLine();
+                        string[] datos = linea.Split('|');
+
+                        if (datos.Length == 3)
+                        {
+                            Historial h = new Historial();
+                            h.Url = datos[0];
+                            h.Contador = int.Parse(datos[1]);
+                            h.Date = DateTime.Parse(datos[2]);
+
+                            historial.Add(h);
+                            AdressBar.Items.Add(h.Url);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void EliminarPagina(string url)
+        {
+            Historial pagina = historial.FirstOrDefault(h => h.Url == url);
+
+            if (pagina != null)
+            {
+                historial.Remove(pagina);
+                GuardarHistorial();
+            }
+        }
 
 
 
         private void Ir_Click(object sender, EventArgs e)
         {
-           
             string Url = AdressBar.Text;
+            // inicio del historial
+
+            Historial pagina = historial.Find(h => h.Url == Url);
+
+            if (pagina != null)
+            {
+                pagina.Contador++;
+                pagina.Date = DateTime.Now;
+            }
+            else
+            {
+                Historial nueva = new Historial();
+                nueva.Url = Url;
+                nueva.Contador = 1;
+                nueva.Date = DateTime.Now;
+
+                historial.Add(nueva);
+                AdressBar.Items.Add(Url);
+            }
+
+            GuardarHistorial();
+
+            // fin del historial
 
 
-            if(Url.Contains(".com"))
+
+
+
+            if (Url.Contains(".com"))
             {
                 if (Url.Contains("https://") || Url.Contains("http://"))
                 {
                     webView21.Source = new Uri(Url);
-                    AdressBar.Items.Add(Url);
+                    
                 }
                 else
                 {
                     Url = "https://" + Url;
                     webView21.Source = new Uri(Url);
-                    AdressBar.Items.Add(Url);
+                    
                 }
             }
             else
@@ -86,7 +138,8 @@ namespace Navegador
                 webView21.Source = new Uri(Url);
             }
 
-            Guardar(@"Historial.txt", Url);
+
+          
 
         }
 
@@ -110,6 +163,38 @@ namespace Navegador
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void erase_Click(object sender, EventArgs e)
+        {
+            string urlSeleccionada = AdressBar.SelectedItem.ToString();
+
+            
+            historial.RemoveAll(h => h.Url == urlSeleccionada);
+
+            
+            GuardarHistorial();
+
+            AdressBar.Items.Remove(urlSeleccionada);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            historial = historial
+               .OrderByDescending(h => h.Contador)
+               .ToList();
+
+            // Limpiar el ComboBox
+            AdressBar.Items.Clear();
+
+            // Volver a cargarlo en el nuevo orden
+            foreach (Historial h in historial)
+            {
+                AdressBar.Items.Add(h.Url);
+            }
+
+            // Opcional: guardar el nuevo orden en el archivo
+            GuardarHistorial();
         }
     }
 }
